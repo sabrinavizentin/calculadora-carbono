@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Pegada de Carbono | UTFPR</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== TOPBAR INSTITUCIONAL ===================== -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="https://www.utfpr.edu.br" target="_blank" rel="noopener">
+        <img
+          src="logo-utfpr.png"
+          alt="UTFPR — Universidade Tecnológica Federal do Paraná"
+          class="brand-logo"
+        />
+        <!-- FALLBACK caso o PNG não exista: -->
+        <!-- <span class="brand-fallback">UTFPR</span> -->
+      </a>
+
+      <span class="topbar-tag">Projeto de Extensão · Sustentabilidade</span>
+    </div>
+  </header>
+
+  <!-- ===================== CONTEÚDO ===================== -->
+  <main class="container">
+
+    <header class="hero">
+      <span class="badge">🌱 Ferramenta gratuita</span>
+      <h1>Calculadora de Pegada de Carbono</h1>
+      <p class="hero-subtitle">
+        Para pequenos comércios e negócios locais
+      </p>
+      <p class="hero-description">
+        Informe o consumo mensal de energia elétrica e combustíveis.
+        Em segundos você descobre sua pegada em <strong>toneladas de CO₂</strong>
+        e recebe um <strong>plano rápido de redução</strong>.
+      </p>
+    </header>
+
+    <form id="pegada-form" class="form-card">
+
+      <section class="card">
+        <div class="card-header">
+          <span class="card-icon">⚡</span>
+          <div>
+            <h2>Energia elétrica</h2>
+            <p class="card-desc">Escopo 2 — consumo da rede</p>
+          </div>
+        </div>
+
+        <label for="energia">Consumo mensal (kWh)</label>
+        <input
+          type="number"
+          id="energia"
+          name="energia"
+          min="0"
+          step="0.1"
+          placeholder="Ex.: 1500"
+        />
+        <p class="hint">
+          Valor disponível na conta de luz. Fator médio da rede brasileira:
+          0,0758 kg CO₂/kWh (2026).
+        </p>
+      </section>
+
+      <section class="card">
+        <div class="card-header">
+          <span class="card-icon">⛽</span>
+          <div>
+            <h2>Combustíveis</h2>
+            <p class="card-desc">Escopo 1 — queima direta</p>
+          </div>
+        </div>
+
+        <p class="hint" style="margin-bottom: 16px;">
+          Consumo mensal de cada combustível usado no negócio
+          (veículos, geradores, cozinha, etc.).
+        </p>
+
+        <div class="grid-2">
+          <div>
+            <label for="diesel">Diesel (L)</label>
+            <input type="number" id="diesel" min="0" step="0.1" placeholder="0" />
+          </div>
+          <div>
+            <label for="gasolina">Gasolina (L)</label>
+            <input type="number" id="gasolina" min="0" step="0.1" placeholder="0" />
+          </div>
+          <div>
+            <label for="etanol">Etanol (L)</label>
+            <input type="number" id="etanol" min="0" step="0.1" placeholder="0" />
+          </div>
+          <div>
+            <label for="glp">GLP / Gás (kg)</label>
+            <input type="number" id="glp" min="0" step="0.1" placeholder="0" />
+          </div>
+        </div>
+      </section>
+
+      <button type="submit" class="btn-primary">
+        Calcular pegada e gerar plano
+        <span aria-hidden="true">→</span>
+      </button>
+    </form>
+
+    <!-- ===================== RESULTADOS ===================== -->
+    <section id="resultados" class="hidden">
+
+      <div class="resultado-destaque">
+        <p class="label">Pegada mensal estimada</p>
+        <p class="valor" id="total-mensal">0,00 t CO₂</p>
+        <div class="divider"></div>
+        <p class="label">Projeção anual</p>
+        <p class="valor valor-secundario" id="total-anual">0,00 t CO₂</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-icon">📊</span>
+          <div>
+            <h2>Detalhamento por fonte</h2>
+            <p class="card-desc">Emissões estimadas mês a mês</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="tabela-detalhe">
+            <thead>
+              <tr>
+                <th>Fonte</th>
+                <th>Consumo</th>
+                <th>kg CO₂/mês</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-icon">🚀</span>
+          <div>
+            <h2>Plano rápido de redução</h2>
+            <p class="card-desc">Ações práticas priorizadas para o seu perfil</p>
+          </div>
+        </div>
+        <div id="plano-reducao"></div>
+      </div>
+
+      <p class="disclaimer">
+        ⚠️ Estimativa baseada em fatores de emissão médios.
+        Para inventários formais, consulte o GHG Protocol Brasil
+        e os fatores oficiais do MCTI.
+      </p>
+    </section>
+
+    <footer class="footer">
+      <p>
+        Desenvolvido como projeto de extensão da
+        <a href="https://www.utfpr.edu.br" target="_blank" rel="noopener">UTFPR</a>.
+      </p>
+      <p class="footer-small">
+        Estimativas de CO₂ baseadas em fatores públicos (MCTI, GHG Protocol Brasil).
+      </p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
